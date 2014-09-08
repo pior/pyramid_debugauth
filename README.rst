@@ -12,6 +12,7 @@ define the pyramid principals from the HTTP client.
 
 * PyPI: https://pypi.python.org/pypi/pyramid_debugauth
 * Bitbucket: https://bitbucket.org/Ludia/pyramid_debugauth
+* Bugs: https://bitbucket.org/Ludia/pyramid_debugauth/issues
 
 
 Installation
@@ -51,8 +52,8 @@ http header and a non-standard auth-scheme *Debug* (:rfc:`7235`):
 
 With common http clients:
 
-:curl: http://localhost:6543 -H '*Authorization: Debug bob admin*'
-:http: http://localhost:6543 '*Authorization: Debug bob admin*'
+   $ curl http://localhost:6543 -H '*Authorization: Debug bob admin*'
+   $ http http://localhost:6543 '*Authorization: Debug bob admin*'
 
 
 Development
