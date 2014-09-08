@@ -53,6 +53,7 @@ http header and a non-standard auth-scheme *Debug* (:rfc:`7235`):
 With common http clients:
 
    $ curl http://localhost:6543 -H '*Authorization: Debug bob admin*'
+
    $ http http://localhost:6543 '*Authorization: Debug bob admin*'
 
 
