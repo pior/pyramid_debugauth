@@ -1,0 +1,16 @@
+syntax: glob
+.DS_Store
+*.pyc
+*.egg
+
+build
+dist
+docs/build
+
+nosetests.xml
+coverage.xml
+
+.noseids
+.coverage
+
+*.egg-info/
