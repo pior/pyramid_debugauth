@@ -63,9 +63,9 @@ Or using a non-standard *authorization* query parameter:
 
 With common http clients:
 
-   $ curl http://localhost:6543?authorization%20debug%20bob%20admin
+   $ curl http://localhost:6543?authorization=debug%20bob%20admin
 
-   $ http http://localhost:6543?authorization\ debug\ bob\ admin
+   $ http http://localhost:6543?authorization=debug\ bob\ admin
 
 
 Development
