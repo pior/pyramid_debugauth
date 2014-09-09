@@ -22,32 +22,57 @@ class Unittest(unittest.TestCase):
         from pyramid.interfaces import IAuthenticationPolicy
         verifyObject(IAuthenticationPolicy, self._makeOne())
 
-    def test_unauthenticated_userid(self):
+    def test_header_unauthenticated_userid(self):
         request = testing.DummyRequest()
         request.headers['Authorization'] = 'Debug chrisr'
         policy = self._makeOne()
         self.assertEqual(policy.unauthenticated_userid(request), 'chrisr')
 
-    def test_unauthenticated_userid_no_credentials(self):
+    def test_header_unauthenticated_userid_no_credentials(self):
         request = testing.DummyRequest()
         policy = self._makeOne()
         self.assertEqual(policy.unauthenticated_userid(request), None)
 
-    def test_unauthenticated_bad_header(self):
+    def test_header_unauthenticated_bad_header(self):
         request = testing.DummyRequest()
         request.headers['Authorization'] = '...'
         policy = self._makeOne()
         self.assertEqual(policy.unauthenticated_userid(request), None)
 
-    def test_unauthenticated_userid_not_debug(self):
+    def test_header_unauthenticated_userid_not_debug(self):
         request = testing.DummyRequest()
         request.headers['Authorization'] = 'Complicated things'
         policy = self._makeOne()
         self.assertEqual(policy.unauthenticated_userid(request), None)
 
-    def test_authenticated_userid(self):
+    def test_header_authenticated_userid(self):
         request = testing.DummyRequest()
         request.headers['Authorization'] = 'Debug chrisr'
+        policy = self._makeOne()
+        self.assertEqual(policy.authenticated_userid(request), 'chrisr')
+
+    def test_qs_unauthenticated_userid(self):
+        request = testing.DummyRequest(params={'authorization': 'debug chrisr'})
+        policy = self._makeOne()
+        self.assertEqual(policy.unauthenticated_userid(request), 'chrisr')
+
+    def test_qs_unauthenticated_userid_no_credentials(self):
+        request = testing.DummyRequest(params={})
+        policy = self._makeOne()
+        self.assertEqual(policy.unauthenticated_userid(request), None)
+
+    def test_qs_unauthenticated_bad_header(self):
+        request = testing.DummyRequest(params={'authorization': '...'})
+        policy = self._makeOne()
+        self.assertEqual(policy.unauthenticated_userid(request), None)
+
+    def test_qs_unauthenticated_userid_not_debug(self):
+        request = testing.DummyRequest(params={'authorization': 'Complicated'})
+        policy = self._makeOne()
+        self.assertEqual(policy.unauthenticated_userid(request), None)
+
+    def test_qs_authenticated_userid(self):
+        request = testing.DummyRequest(params={'authorization': 'debug chrisr'})
         policy = self._makeOne()
         self.assertEqual(policy.authenticated_userid(request), 'chrisr')
 
@@ -102,17 +127,32 @@ class FunctionalTest(unittest.TestCase):
         self.app.get('/principal1', status=403)
         self.app.get('/principal2', status=403)
 
-    def test_user_id(self):
+    def test_header_user_id(self):
         self.app.get('/user_id',
                      headers={'Authorization': 'Debug bob'},
                      status=200)
 
-    def test_principal1(self):
+    def test_header_principal1(self):
         self.app.get('/principal1',
                      headers={'Authorization': 'Debug bob principal1'},
                      status=200)
 
-    def test_principal2(self):
+    def test_header_principal2(self):
         self.app.get('/principal2',
                      headers={'Authorization': 'Debug bob principal2'},
+                     status=200)
+
+    def test_qs_user_id(self):
+        self.app.get('/user_id',
+                     params={'authorization': 'debug bob'},
+                     status=200)
+
+    def test_qs_principal1(self):
+        self.app.get('/principal1',
+                     params={'authorization': 'debug bob principal1'},
+                     status=200)
+
+    def test_qs_principal2(self):
+        self.app.get('/principal2',
+                     params={'authorization': 'debug bob principal2'},
                      status=200)

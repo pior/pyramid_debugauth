@@ -40,7 +40,8 @@ class DebugAuthenticationPolicy(CallbackAuthenticationPolicy):
         return credentials[1:]
 
     def _get_credentials(self, request):
-        authorization = request.headers.get('Authorization', None)
+        authorization = request.GET.get('authorization', None)
+        authorization = request.headers.get('Authorization', authorization)
         if not authorization:
             return None
         try:

@@ -48,13 +48,24 @@ The DebugAuthenticationPolicy allows a client to impersonate any user and
 specify any number of principals desired using the standard *Authorization*
 http header and a non-standard auth-scheme *Debug* (:rfc:`7235`):
 
-   ``Authorization: *Debug* user_id [principal_1] [principal_2] ...``
+   ``Authorization: Debug user_id [principal_1] [principal_2] ...``
 
 With common http clients:
 
-   $ curl http://localhost:6543 -H '*Authorization: Debug bob admin*'
+   $ curl http://localhost:6543 -H 'Authorization: Debug bob admin'
 
-   $ http http://localhost:6543 '*Authorization: Debug bob admin*'
+   $ http http://localhost:6543 'Authorization: Debug bob admin'
+
+
+Or using a non-standard *authorization* query parameter:
+
+   ``http://localhost:6543/protected?authorization=debug%20user_id%20principal_1
+
+With common http clients:
+
+   $ curl http://localhost:6543?authorization%20debug%20bob%20admin
+
+   $ http http://localhost:6543?authorization\ debug\ bob\ admin
 
 
 Development

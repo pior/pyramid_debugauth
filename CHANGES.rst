@@ -4,6 +4,9 @@ Changelog
 Development
 -----------
 
+* Add ability to authenticate via Query String
+
+
 0.0.2 (2014-09-08)
 ------------------
 
