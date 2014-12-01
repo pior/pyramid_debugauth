@@ -4,6 +4,8 @@ Changelog
 Development
 -----------
 
+* Permit setting a custom callback.
+
 0.1.1 (2014-09-09)
 ------------------
 

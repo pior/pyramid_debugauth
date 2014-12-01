@@ -12,6 +12,8 @@ class DebugAuthenticationPolicy(CallbackAuthenticationPolicy):
 
         Authentication: Debug user_id [principal1] [principal2] [...]
     """
+    def __init__(self, callback=None):
+        self._callback = callback
 
     def unauthenticated_userid(self, request):
         """ The userid parsed from the ``Authorization`` request header."""
@@ -37,7 +39,10 @@ class DebugAuthenticationPolicy(CallbackAuthenticationPolicy):
         # getting called twice when authenticated_userid is called.  Avoiding
         # that, however, winds up duplicating logic from the superclass.
         credentials = self._get_credentials(request)
-        return credentials[1:]
+        principals = credentials[1:]
+        if self._callback:
+            principals.extend(self._callback(credentials[0], request))
+        return principals
 
     def _get_credentials(self, request):
         authorization = request.GET.get('authorization', None)
@@ -46,7 +51,7 @@ class DebugAuthenticationPolicy(CallbackAuthenticationPolicy):
             return None
         try:
             authmeth, auth = authorization.split(' ', 1)
-        except ValueError: # not enough values to unpack
+        except ValueError:  # not enough values to unpack
             return None
         if authmeth.lower() != 'debug':
             return None
