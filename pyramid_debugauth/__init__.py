@@ -39,9 +39,12 @@ class DebugAuthenticationPolicy(CallbackAuthenticationPolicy):
         # getting called twice when authenticated_userid is called.  Avoiding
         # that, however, winds up duplicating logic from the superclass.
         credentials = self._get_credentials(request)
+
         principals = credentials[1:]
         if self._callback:
-            principals.extend(self._callback(credentials[0], request))
+            sub_principals = self._callback(credentials[0], request)
+            if sub_principals:
+                principals.extend(sub_principals)
         return principals
 
     def _get_credentials(self, request):
