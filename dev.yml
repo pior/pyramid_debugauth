@@ -1,0 +1,8 @@
+up:
+  - python: 2.7.13
+  - custom:
+      name: Install the python package in develop mode
+      met?: 'false'  # pip show pyramid_debugauth > /dev/null
+      meet: pip install -e .[dev]
+
+commands:
