@@ -85,3 +85,14 @@ Running tests::
    $ . venv/bin/activate
    (venv)$ pip install -e .[dev]
    (venv)$ nosetests
+
+Release
+-------
+
+::
+
+   $ python setup.py sdist bdist_wheel
+   ...
+
+   $ twine upload dist/*
+   ...

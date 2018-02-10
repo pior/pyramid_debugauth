@@ -5,3 +5,5 @@ nosetests.xml
 .noseids
 .coverage
 coverage.xml
+dist/
+build/
