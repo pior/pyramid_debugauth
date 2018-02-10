@@ -13,7 +13,7 @@ python:
 env:
 - PYRAMID_VER=1.4.0
 - PYRAMID_VER=1.6.0
-# - PYRAMID_VER=1.9.0
+- PYRAMID_VER=1.9
 
 install:
   - pip install -e .[dev]
