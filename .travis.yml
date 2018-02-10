@@ -22,3 +22,4 @@ script:
   - pip install "Pyramid~=${PYRAMID_VER}"
   - nosetests
   - rm -rf dist && python setup.py sdist && pip install dist/*.tar.gz
+  - python setup.py check -r -s  # Check the setuptools readme

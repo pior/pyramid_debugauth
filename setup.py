@@ -30,6 +30,8 @@ dev_extras = [
     'mock',
     'webtest',
     'pyramid',
+
+    'readme',
     'twine',
     ]
 
