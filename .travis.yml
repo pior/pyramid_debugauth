@@ -16,9 +16,9 @@ env:
 # - PYRAMID_VER=1.9
 
 install:
-  - pip install -r requirements-test.txt
-  - pip install -e .
+  - pip install -e .[dev]
 
 script:
   - pip install "Pyramid==${PYRAMID_VER}"
   - nosetests
+  - rm -rf dist && python setup.py sdist && pip install dist/*.tar.gz
