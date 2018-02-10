@@ -76,5 +76,5 @@ Running tests::
 
    $ virtualenv venv
    $ . venv/bin/activate
-   (venv)$ pip install -r requirements-test.txt
+   (venv)$ pip install -e .[dev]
    (venv)$ nosetests

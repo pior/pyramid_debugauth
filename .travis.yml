@@ -11,14 +11,14 @@ python:
   # - '3.6'
 
 env:
-- PYRAMID_VER=1.4
-- PYRAMID_VER=1.6
-# - PYRAMID_VER=1.9
+- PYRAMID_VER=1.4.0
+- PYRAMID_VER=1.6.0
+# - PYRAMID_VER=1.9.0
 
 install:
   - pip install -e .[dev]
 
 script:
-  - pip install "Pyramid==${PYRAMID_VER}"
+  - pip install "Pyramid~=${PYRAMID_VER}"
   - nosetests
   - rm -rf dist && python setup.py sdist && pip install dist/*.tar.gz
