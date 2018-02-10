@@ -109,7 +109,7 @@ class FunctionalTest(unittest.TestCase):
     def setUp(self):
         config = self.get_config()
 
-        def view(self, request):
+        def view(request):
             request.response.body = 'OK'
             return request.response
 
