@@ -37,7 +37,7 @@ dev_extras = [
 
 setup(
     name='pyramid_debugauth',
-    version='0.1.3.dev0',
+    version='0.2.0',
     description='Debug Authentication Policy for Pyramid',
     long_description=README + '\n\n' +  CHANGES,
     classifiers=[

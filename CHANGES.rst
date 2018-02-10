@@ -1,8 +1,12 @@
 Changelog
 =========
 
-Development
------------
+0.2.0 (2018-02-09)
+------------------
+
+* Switch to Github
+* Switch to setuptools (from d2to1)
+* Fix crash in tests with recent versions of Pyramid
 
 0.1.2 (2014-12-03)
 ------------------
