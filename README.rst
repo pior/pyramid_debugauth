@@ -10,6 +10,13 @@ restricted to debug usage / development phase.
 
 * PyPI: https://pypi.python.org/pypi/pyramid_debugauth
 * Code: https://github.com/pior/pyramid_debugauth
+* |travis-ci|
+
+.. |travis-ci| image::
+   https://travis-ci.org/pior/pyramid_debugauth.svg?branch=master
+   :target: https://travis-ci.org/pior/pyramid_debugauth
+   :alt: Tests on Travis-CI
+
 
 
 Installation
