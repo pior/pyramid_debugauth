@@ -5,14 +5,11 @@ Pyramid_debugauth
 Debug Authentication Policy for Pyramid. Provide a simple and standard way to
 define the pyramid principals from the HTTP client.
 
-.. warning::
-
-   (Obviously) This pyramid is totally unsafe for production and should be
-   restricted to debug usage / development phase.
+**Warning**: This pyramid is totally unsafe for production and should be
+restricted to debug usage / development phase.
 
 * PyPI: https://pypi.python.org/pypi/pyramid_debugauth
-* Bitbucket: https://bitbucket.org/Ludia/pyramid_debugauth
-* Bugs: https://bitbucket.org/Ludia/pyramid_debugauth/issues
+* Code: https://github.com/pior/pyramid_debugauth
 
 
 Installation
@@ -48,9 +45,11 @@ The DebugAuthenticationPolicy allows a client to impersonate any user and
 specify any number of principals desired using the standard *Authorization*
 http header and a non-standard auth-scheme *Debug* (:rfc:`7235`):
 
-   ``Authorization: Debug user_id [principal_1] [principal_2] ...``
+``Authorization: Debug user_id [principal_1] [principal_2] ...``
 
 With common http clients:
+
+.. code-block:: bash
 
    $ curl http://localhost:6543 -H 'Authorization: Debug bob admin'
 
@@ -59,9 +58,11 @@ With common http clients:
 
 Or using a non-standard *authorization* query parameter:
 
-   ``http://localhost:6543/protected?authorization=debug%20user_id%20principal_1
+``http://localhost:6543/protected?authorization=debug%20user_id%20principal_1``
 
 With common http clients:
+
+.. code-block:: bash
 
    $ curl http://localhost:6543?authorization=debug%20bob%20admin
 

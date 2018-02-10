@@ -1,0 +1,24 @@
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.cache/pip
+
+language: python
+
+python:
+  - '2.7'
+  # - '3.6'
+
+env:
+- PYRAMID_VER=1.4
+- PYRAMID_VER=1.6
+# - PYRAMID_VER=1.9
+
+install:
+  - pip install -r requirements-test.txt
+  - pip install -e .
+
+script:
+  - pip install "Pyramid==${PYRAMID_VER}"
+  - nosetests
